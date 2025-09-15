@@ -1,4 +1,4 @@
-# API do projeto de controlador de treinos 
+# Círculo mínimo
 
 Este projeto, intitulado círculo mínimo, implementa dois algoritmos utilizados para a determinação de um círculo de raio mínimo que engloba uma nuvem de pontos. A versão utilizada para desenvolvimento é Python 3.12.3.
 
