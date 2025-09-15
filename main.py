@@ -3,42 +3,7 @@ from src.algoritmo.heuristico import Heuristico
 from src.algoritmo.incremental_randomico import IncrementalRandomico
 from src.dominio import Ponto, Circulo
 from src.nuvem_pontos import gera_nuvem_pontos
-from src.plot import plota_circulo_envolvente, plota_tempo_execucao_algoritmos
-
-NUMERO_MAXIMO_AMOSTRAS = 500
-NUMEROS_PONTOS = [10000, 20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000, 100000]
-
-
-def compara_algoritmos(circulo: Circulo):
-    tempos_heuristico = []
-    tempos_incremental_randomico = []
-    tempos_incremental_randomico_medio = []
-
-    for numero_pontos in NUMEROS_PONTOS:
-        print(f"Gerando círculo mínimo envolvente para nuvem de {numero_pontos} pontos")
-        pontos = gera_nuvem_pontos(
-            numero_pontos=numero_pontos,
-            circulo=circulo,
-        )
-
-        _, tempo_execucao_heuristico = usa_algoritmo_heuristico(pontos)
-        tempos_heuristico.append(tempo_execucao_heuristico)
-        print("Algoritmo heurístico finalizado")
-
-        tempos_incremental_randomico_amostral = []
-        for amostra in range(0, NUMERO_MAXIMO_AMOSTRAS):
-            _, tempo_incremental_randomico_amostral = (
-                usa_alogirtmo_incremental_randomico(pontos)
-            )
-            print(f"Amostra número {amostra} do algoritmo incremental randômico finalizada")
-            tempos_incremental_randomico_amostral.append(tempo_incremental_randomico_amostral)
-
-        tempos_incremental_randomico.append(tempos_incremental_randomico_amostral)
-        tempos_incremental_randomico_medio.append(
-            sum(tempos_incremental_randomico_amostral) / len(tempos_incremental_randomico_amostral)
-        )
-
-    plota_tempo_execucao_algoritmos(NUMEROS_PONTOS, tempos_heuristico, tempos_incremental_randomico_medio, tempos_incremental_randomico)
+from src.plot import plota_circulo_envolvente
 
 
 def usa_algoritmo_heuristico(pontos: list[Ponto]) -> tuple[Circulo, float]:
@@ -61,7 +26,7 @@ def usa_alogirtmo_incremental_randomico(pontos: list[Ponto]) -> tuple[Circulo, f
     tempo_final = time.perf_counter()
     tempo_execucao = tempo_final - tempo_inicial
     print(circulo_minimo)
-    print(f"Algoritmo incremental randômico finalizado para nuvem de {len(pontos)} pontos em {tempo_execucao}s")
+    print(f"Algoritmo incremental randômico finalizado para nuvem de {len(pontos)} pontos em {tempo_execucao}s\n")
     return circulo_minimo, tempo_execucao
 
 
