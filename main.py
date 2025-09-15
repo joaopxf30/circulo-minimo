@@ -52,6 +52,7 @@ def usa_algoritmo_heuristico(pontos: list[Ponto]) -> tuple[Circulo, float]:
     print(f"Algoritmo heurístico finalizado para nuvem de {len(pontos)} pontos em {tempo_execucao}s\n")
     return circulo_minimo, tempo_execucao
 
+
 def usa_alogirtmo_incremental_randomico(pontos: list[Ponto]) -> tuple[Circulo, float]:
     print("\nIniciando algoritmo incremental randomico")
     algoritmo = IncrementalRandomico(pontos)
@@ -69,15 +70,13 @@ if __name__ == '__main__':
         centro=Ponto(x=-5.0, y=-5.0),
         raio=3
     )
-    # nuvem_pontos = gera_nuvem_pontos(
-    #     numero_pontos=500,
-    #     circulo=circulo,
-    # )
+    nuvem_pontos = gera_nuvem_pontos(
+        numero_pontos=500,
+        circulo=circulo,
+    )
 
-    # circulo_heuristico, _ = usa_algoritmo_heuristico(nuvem_pontos)
-    # plota_circulo_envolvente(nuvem_pontos, circulo_heuristico, circulo, "Algoritmo heurístico")
-    #
-    # circulo_incremental_randomico, _ = usa_alogirtmo_incremental_randomico(nuvem_pontos)
-    # plota_circulo_envolvente(nuvem_pontos, circulo_incremental_randomico, circulo, "Algoritmo incremental randômico")
+    circulo_heuristico, _ = usa_algoritmo_heuristico(nuvem_pontos)
+    plota_circulo_envolvente(nuvem_pontos, circulo_heuristico, circulo, "Algoritmo heurístico")
 
-    compara_algoritmos(circulo)
+    circulo_incremental_randomico, _ = usa_alogirtmo_incremental_randomico(nuvem_pontos)
+    plota_circulo_envolvente(nuvem_pontos, circulo_incremental_randomico, circulo, "Algoritmo incremental randômico")
